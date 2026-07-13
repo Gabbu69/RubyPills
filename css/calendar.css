@@ -1,0 +1,209 @@
+/* ============================================================
+   KAWAII CARE — Calendar Styles (calendar.css)
+   ============================================================
+   History / adherence calendar showing a month grid with
+   color-coded day states. Each day cell can be:
+     --taken  → green tint   (medication taken on time)
+     --late   → amber tint   (taken, but late)
+     --missed → gray text    (not taken at all)
+     --today  → heart-pink border highlight
+
+   Depends on: variables.css
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   CONTAINER
+   ---------------------------------------------------------- */
+
+.calendar-container {
+  background: var(--color-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  border: 2px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* ----------------------------------------------------------
+   HEADER — Month title + navigation arrows
+   ---------------------------------------------------------- */
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.calendar-header__month,
+.calendar-header__title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+}
+
+.calendar-header__nav {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Ensure nav icon buttons are touch-friendly (44×44) */
+.calendar-header__nav .btn--icon {
+  width: 44px;
+  height: 44px;
+}
+
+
+/* ----------------------------------------------------------
+   WEEKDAY LABELS — S M T W T F S
+   ---------------------------------------------------------- */
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+
+/* ----------------------------------------------------------
+   DAY GRID — 7-column calendar
+   ---------------------------------------------------------- */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+
+/* ----------------------------------------------------------
+   INDIVIDUAL DAY CELL
+   ---------------------------------------------------------- */
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  position: relative;
+  cursor: default;
+  min-height: 44px;              /* WCAG touch target minimum  */
+  background: transparent;
+  border: 2px solid transparent;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+  gap: 2px;
+}
+
+
+/* ----------------------------------------------------------
+   DAY STATES
+   ---------------------------------------------------------- */
+
+/* Today — highlighted with a heart-pink ring */
+.calendar-day--today {
+  border-color: var(--color-heart);
+  box-shadow: 0 0 0 2px rgba(255, 107, 138, 0.15);
+}
+
+/* Taken on time — soft green tint */
+.calendar-day--taken {
+  background: rgba(168, 216, 168, 0.15);
+}
+
+/* Taken late — soft amber tint */
+.calendar-day--late {
+  background: rgba(245, 200, 154, 0.15);
+}
+
+/* Missed — grayed out */
+.calendar-day--missed {
+  color: var(--color-gray);
+}
+
+/* Empty cells (padding at start/end of month) */
+.calendar-day--empty {
+  visibility: hidden;
+}
+
+/* Days from previous/next month shown for context */
+.calendar-day--other-month {
+  opacity: 0.3;
+}
+
+/* Days with adherence data — interactive */
+.calendar-day--has-data {
+  cursor: pointer;
+}
+
+.calendar-day--has-data:hover {
+  background: var(--color-primary-lighter);
+}
+
+
+/* ----------------------------------------------------------
+   DAY CELL INNER ELEMENTS
+   ---------------------------------------------------------- */
+
+.calendar-day__number {
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+}
+
+/* Small status icon beneath the number (✓, ⏰, etc.) */
+.calendar-day__icon {
+  font-size: 10px;
+  line-height: 1;
+}
+
+
+/* ----------------------------------------------------------
+   LEGEND — explains the color coding
+   ---------------------------------------------------------- */
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  justify-content: center;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.calendar-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.calendar-legend__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+.calendar-legend__dot--taken {
+  background: var(--color-success);
+}
+
+.calendar-legend__dot--late {
+  background: var(--color-late);
+}
+
+.calendar-legend__dot--missed {
+  background: var(--color-gray);
+}

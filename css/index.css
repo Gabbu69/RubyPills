@@ -1,0 +1,17 @@
+/* ============================================================
+   KAWAII CARE — Master Stylesheet (index.css)
+   ============================================================
+   Single entry-point that imports every CSS module in the
+   correct cascade order.
+
+   Import order:
+     1. variables  — design tokens (no rules, just :root vars)
+     2. base       — resets, typography, app container
+     3. patterns   — decorative CSS backgrounds
+     4. components — all UI component styles
+     5. animations — keyframes & motion classes
+     6. calendar   — history calendar grid
+     7. accessibility — overrides (loaded last to win specificity)
+   ============================================================ */
+
+@import 'style.css';

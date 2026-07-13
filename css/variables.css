@@ -1,0 +1,127 @@
+/* ============================================================
+   KAWAII CARE — Design Tokens (variables.css)
+   ============================================================
+   All design decisions live here as CSS custom properties.
+   Every color, spacing unit, radius, shadow, font setting,
+   transition curve, and z-index layer is defined once and
+   referenced everywhere else via var(--token-name).
+
+   Color palette is warm-pink / cream with soft green accents
+   for "taken" states and warm amber for "late" states.
+   ============================================================ */
+
+:root {
+  /* ----------------------------------------------------------
+     COLORS — Core Palette
+     ---------------------------------------------------------- */
+
+  /* Backgrounds */
+  --color-bg:              #FFF5F0;   /* warm cream, main page background          */
+  --color-bg-alt:          #FFF0EB;   /* slightly deeper cream for alternating rows */
+  --color-card:            #FFFFFF;   /* card / surface white                       */
+
+  /* Primary — the signature pink */
+  --color-primary:         #F48BA6;   /* main pink, buttons & accents              */
+  --color-primary-light:   #FACDD6;   /* lighter pink for gradients & hover states */
+  --color-primary-lighter: #FDE8EC;   /* very light pink for subtle tints          */
+  --color-primary-dark:    #E8708E;   /* deeper pink for text on pink bg           */
+
+  /* Accent & Secondary */
+  --color-accent:          #FF8FA3;   /* light-red accent for emphasis             */
+  --color-accent-warm:     #FFB5C2;   /* warm accent for softer highlights         */
+  --color-secondary:       #FFC2D1;   /* softer pink, secondary elements           */
+
+  /* Neutrals */
+  --color-cream:           #FFF8F3;   /* lightest cream                            */
+  --color-white:           #FFFFFF;
+  --color-text:            #4A2D35;   /* dark rose-brown — high contrast on cream  */
+  --color-text-secondary:  #7A5060;   /* medium body text                          */
+  --color-text-muted:      #A0808A;   /* de-emphasized / placeholder text          */
+  --color-border:          #F8D7E0;   /* default border                            */
+  --color-border-light:    #FDE8EC;   /* subtle border                             */
+
+  /* Semantic — Status Colors */
+  --color-success:         #A8D8A8;   /* soft green — medication taken             */
+  --color-success-text:    #3A6B3A;   /* readable green text                       */
+  --color-gray:            #D4CDD0;   /* missed / inactive                         */
+  --color-gray-light:      #EDE8EA;   /* light gray for disabled states            */
+  --color-late:            #F5C89A;   /* warm amber — late / overdue               */
+  --color-late-text:       #8B6914;   /* readable amber text                       */
+
+  /* Decorative / Kawaii accents */
+  --color-heart:           #FF6B8A;   /* hearts, love indicators                   */
+  --color-bow:             #FF85A2;   /* bows, ribbons                             */
+  --color-star:            #FFD700;   /* stars, celebrations                       */
+
+
+  /* ----------------------------------------------------------
+     SPACING — 4px base scale
+     ---------------------------------------------------------- */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+
+  /* ----------------------------------------------------------
+     BORDER RADII — progressively rounder
+     ---------------------------------------------------------- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-full: 9999px;   /* pill / circle */
+
+
+  /* ----------------------------------------------------------
+     SHADOWS — pink-tinted for warmth
+     ---------------------------------------------------------- */
+  --shadow-sm:  0 1px  4px  rgba(244, 139, 166, 0.08),
+                0 1px  2px  rgba(244, 139, 166, 0.06);
+  --shadow-md:  0 4px  12px rgba(244, 139, 166, 0.10),
+                0 2px  4px  rgba(244, 139, 166, 0.06);
+  --shadow-lg:  0 8px  24px rgba(244, 139, 166, 0.14),
+                0 4px  8px  rgba(244, 139, 166, 0.08);
+
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+     ---------------------------------------------------------- */
+  --font-primary:       'Nunito', sans-serif;
+
+  /* Weights */
+  --font-weight-normal:    400;
+  --font-weight-medium:    600;
+  --font-weight-bold:      700;
+  --font-weight-extrabold: 800;
+
+  /* Sizes — rem-based for accessibility */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  2rem;      /* 32px */
+
+
+  /* ----------------------------------------------------------
+     TRANSITIONS — three speed tiers
+     ---------------------------------------------------------- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease-out;
+
+
+  /* ----------------------------------------------------------
+     Z-INDEX LAYERS — explicit stacking order
+     ---------------------------------------------------------- */
+  --z-base:         1;
+  --z-card:         10;
+  --z-nav:          100;
+  --z-notification: 200;
+  --z-modal:        300;
+  --z-particles:    400;
+}

@@ -1,0 +1,98 @@
+/* ============================================================
+   KAWAII CARE — Accessibility (accessibility.css)
+   ============================================================
+   Overrides for motion sensitivity, decoration reduction,
+   screen-reader utilities, forced-colors (Windows High
+   Contrast), and prefers-contrast: more.
+
+   Loaded last so these rules can override any previous styles.
+
+   Depends on: variables.css, components.css, animations.css
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   REDUCED MOTION — class-based override
+   Applied via JS when the user toggles the "Reduce Motion"
+   setting, or as a fallback for systems that don't expose
+   prefers-reduced-motion.
+   ---------------------------------------------------------- */
+
+.reduced-motion,
+.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+
+/* ----------------------------------------------------------
+   REDUCED DECORATIONS — hides purely decorative elements
+   Applied via JS when the user toggles "Show Decorations" off.
+   ---------------------------------------------------------- */
+
+.reduced-decorations .particle-heart,
+.reduced-decorations .particle-star,
+.reduced-decorations .pattern-polka::before,
+.reduced-decorations .pattern-gingham::before,
+.reduced-decorations .screen-decoration::before,
+.reduced-decorations .screen-decoration::after {
+  display: none !important;
+}
+
+
+/* ----------------------------------------------------------
+   SCREEN-READER ONLY — visually hidden, accessible to AT
+   ---------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+
+/* ----------------------------------------------------------
+   FORCED COLORS (Windows High Contrast Mode)
+   Ensures interactive elements remain distinguishable when
+   the OS overrides all colors.
+   ---------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .btn,
+  .toggle-switch__slider,
+  .calendar-day,
+  .nav-tab {
+    border: 2px solid ButtonText;
+  }
+
+  .btn--primary {
+    background: ButtonFace;
+    color: ButtonText;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   HIGH CONTRAST PREFERENCE
+   Deepens text colors and strengthens borders & shadows
+   for users who prefer increased contrast.
+   ---------------------------------------------------------- */
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-text:           #2A0D15;
+    --color-text-secondary: #4A2535;
+    --color-border:         #D4A0B0;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}

@@ -1,0 +1,151 @@
+/* ============================================================
+   KAWAII CARE — Animations (animations.css)
+   ============================================================
+   Keyframe definitions for every motion in the app, plus
+   particle element base styles. All animation *applications*
+   are wrapped in @media (prefers-reduced-motion: no-preference)
+   so users who prefer reduced motion get a still experience.
+
+   Depends on: variables.css
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   KEYFRAMES
+   ---------------------------------------------------------- */
+
+/* Hearts & particles float up and fade out */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Cute bouncing bow / ribbon effect */
+@keyframes bounce-bow {
+  0%, 100% { transform: translateY(0); }
+  25%      { transform: translateY(-8px); }
+  50%      { transform: translateY(0); }
+  75%      { transform: translateY(-4px); }
+}
+
+/* Subtle scale pulse for call-to-action buttons */
+@keyframes gentle-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+}
+
+/* Notification banner slides down from top */
+@keyframes slide-down {
+  0% {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* General fade-in with slight upward motion */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Playful wiggle for celebration moments */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-3deg); }
+  75%      { transform: rotate(3deg); }
+}
+
+/* Twinkling sparkle for star particles */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* ----------------------------------------------------------
+   PARTICLE BASE STYLES
+   These are always applied so layout works correctly,
+   but animation is only enabled below if user allows motion.
+   ---------------------------------------------------------- */
+
+.particle-heart {
+  position: absolute;
+  pointer-events: none;
+  z-index: var(--z-particles);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.particle-star {
+  position: absolute;
+  pointer-events: none;
+  z-index: var(--z-particles);
+  font-size: 18px;
+  line-height: 1;
+}
+
+
+/* ----------------------------------------------------------
+   ANIMATION APPLICATION
+   Only applied when the user has NOT requested reduced motion.
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Floating hearts drift upward and vanish */
+  .particle-heart {
+    animation: float-up 1.5s ease-out forwards;
+  }
+
+  /* Stars twinkle in and out */
+  .particle-star {
+    animation: sparkle 1s ease-in-out forwards;
+  }
+
+  /* Bouncing bow decoration */
+  .bounce-bow {
+    animation: bounce-bow 0.6s ease;
+  }
+
+  /* Pulsing call-to-action button */
+  .pulse-btn {
+    animation: gentle-pulse 2s ease-in-out infinite;
+  }
+
+  /* Notification banner entrance */
+  .slide-down-enter {
+    animation: slide-down 0.4s ease-out forwards;
+  }
+
+  /* Generic fade-in for screen transitions */
+  .fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  /* Celebration wiggle on taken cards */
+  .celebrating .med-card--taken {
+    animation: wiggle 0.3s ease;
+  }
+}

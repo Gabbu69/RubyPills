@@ -1,0 +1,96 @@
+/* ============================================================
+   KAWAII CARE — Decorative Patterns (patterns.css)
+   ============================================================
+   Pure-CSS background patterns that add depth and cuteness
+   without any image assets. Applied via utility classes on
+   containers that need a decorative touch.
+
+   All patterns use ::before pseudo-elements so they layer
+   behind child content without affecting layout.
+
+   Depends on: variables.css
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   POLKA DOTS
+   Tiny repeating dots in a grid. Very kawaii ✿
+   Usage: add class "pattern-polka" to any container.
+   ---------------------------------------------------------- */
+
+.pattern-polka {
+  position: relative;
+}
+
+.pattern-polka::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      circle,
+      var(--color-primary-light) 1px,
+      transparent 1px
+    );
+  background-size: 24px 24px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;   /* match parent's corners */
+}
+
+
+/* ----------------------------------------------------------
+   GINGHAM CHECK
+   Classic gingham using overlapping stripes.
+   Extremely subtle — barely visible, adds fabric texture.
+   Usage: add class "pattern-gingham" to any container.
+   ---------------------------------------------------------- */
+
+.pattern-gingham {
+  position: relative;
+}
+
+.pattern-gingham::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 10px,
+      rgba(244, 139, 166, 0.03) 10px,
+      rgba(244, 139, 166, 0.03) 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      rgba(244, 139, 166, 0.03) 10px,
+      rgba(244, 139, 166, 0.03) 20px
+    );
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+
+/* ----------------------------------------------------------
+   SCREEN DECORATION WRAPPER
+   Establishes a positioning context for screens that want
+   decorative pseudo-elements (floating shapes, etc.) while
+   keeping content above the decorations via z-index.
+   Usage: add class "screen-decoration" to a screen container.
+   ---------------------------------------------------------- */
+
+.screen-decoration {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Push all direct children above any decoration layers */
+.screen-decoration > * {
+  position: relative;
+  z-index: 1;
+}
