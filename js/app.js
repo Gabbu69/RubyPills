@@ -62,6 +62,11 @@
 
     // 7. Check for expired snoozes
     checkExpiredSnoozes();
+
+    // 8. Initialize Capacitor native bridge (no-op on web)
+    if (window.CapBridge && typeof CapBridge.init === 'function') {
+      CapBridge.init();
+    }
   }
 
   // ─── Navigation ─────────────────────────────────────────────────

@@ -300,6 +300,11 @@
       Animations.celebrateDose(cardEl);
     }
 
+    // Haptic feedback on native
+    if (window.CapBridge && typeof CapBridge.hapticSuccess === 'function') {
+      CapBridge.hapticSuccess();
+    }
+
     // Screen reader announcement
     Accessibility.announceToScreenReader(medName + ' marked as taken');
 

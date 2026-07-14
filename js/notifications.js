@@ -45,6 +45,12 @@
    * @returns {Promise<string>} Resolves to 'granted', 'denied', or 'default'.
    */
   function requestPermission() {
+    // Use native bridge if available
+    if (window.CapBridge && CapBridge.isNative()) {
+      return CapBridge.requestNotificationPermission().then(function (granted) {
+        return granted ? 'granted' : 'denied';
+      });
+    }
     if (!isSupported()) {
       return Promise.resolve('unsupported');
     }
@@ -81,7 +87,7 @@
     const body = template.replace('{med}', medName || 'your medication');
 
     try {
-      new Notification('Kawaii Care 💗', {
+      new Notification('RubyPills 💗', {
         body: body,
         icon: undefined, // Could add a small icon later
         requireInteraction: true,
@@ -180,8 +186,21 @@
     const doses = Store.getTodayDoses();
     const meds = Store.getMedications();
     const now = Date.now();
+    const useNative = window.CapBridge && CapBridge.isNative();
 
-    doses.forEach(function (dose) {
+    // Cancel any pending native notifications first
+    if (useNative) {
+      CapBridge.cancelAllNotifications();
+    }
+
+    const NOTIFICATION_MESSAGES = [
+      "Time for your {med}! You've got this 💗",
+      "Hey! It's {med} time 🌸 Take care of yourself!",
+      "Gentle reminder: {med} is waiting for you 🎀",
+      "Your {med} is due! A little care goes a long way 💝",
+    ];
+
+    doses.forEach(function (dose, index) {
       if (dose.status !== 'pending' && dose.status !== 'snoozed') return;
 
       const parsed = Store.parseTime(dose.scheduledTime);
@@ -195,13 +214,27 @@
           return m.id === dose.medId;
         });
         const medName = med ? med.name : 'Medication';
+        const template = NOTIFICATION_MESSAGES[index % NOTIFICATION_MESSAGES.length];
+        const body = template.replace('{med}', medName);
 
-        const tid = setTimeout(function () {
-          showBrowserNotification(medName);
-          showInAppNotification(medName, dose.medId);
-        }, msUntil);
+        if (useNative) {
+          // Schedule via Capacitor Local Notifications
+          CapBridge.scheduleNotification({
+            id: index + 1,
+            title: 'RubyPills 💗',
+            body: body,
+            at: target,
+            extra: { medId: dose.medId, medName: medName },
+          });
+        } else {
+          // Fall back to setTimeout + browser notification
+          const tid = setTimeout(function () {
+            showBrowserNotification(medName);
+            showInAppNotification(medName, dose.medId);
+          }, msUntil);
 
-        scheduledTimeouts.push(tid);
+          scheduledTimeouts.push(tid);
+        }
       }
     });
   }

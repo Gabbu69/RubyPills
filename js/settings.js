@@ -171,6 +171,10 @@
       <p class="about-section__name">RubyPills 🎀</p>
       <p class="about-section__version">Version 1.0</p>
       <p class="about-section__tagline">Your cute Hello Kitty medication reminder 💗</p>
+      <p class="about-section__disclaimer">
+        This app is a personal reminder tool and does not provide medical advice.
+        Always follow your doctor's instructions regarding medication dosage and timing.
+      </p>
     `;
     container.appendChild(aboutSection);
   }
