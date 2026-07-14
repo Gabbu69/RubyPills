@@ -1,1 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+www/
+
+# Capacitor generated
+android/app/build/
+android/.gradle/
+android/build/
+android/captures/
+android/local.properties
+android/.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# Vercel
 .vercel

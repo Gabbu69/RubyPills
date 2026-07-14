@@ -1,0 +1,11 @@
+{
+  "appId": "com.comsci.rubypills",
+  "appName": "RubyPills",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}

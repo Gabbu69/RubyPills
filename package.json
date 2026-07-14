@@ -1,0 +1,29 @@
+{
+  "name": "rubypills",
+  "version": "1.0.0",
+  "description": "RubyPills — A cute medication reminder app",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "mobile:build": "npm run build && npx cap sync",
+    "mobile:android": "npx cap open android",
+    "mobile:run": "npx cap run android"
+  },
+  "keywords": [
+    "medication",
+    "reminder",
+    "health"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@capacitor/android": "^8.4.1",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/cli": "^8.4.1",
+    "@capacitor/core": "^8.4.1",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/local-notifications": "^8.2.0",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2"
+  }
+}
